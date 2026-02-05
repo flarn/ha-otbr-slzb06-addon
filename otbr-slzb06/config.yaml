@@ -1,0 +1,25 @@
+name: "OTBR TCP"
+version: "1.0.0"
+slug: "otbr_tcp"
+description: "OpenThread Border Router for network-attached (TCP) serial bridges"
+url: "https://github.com/bnutzer/docker-otbr-tcp"
+arch:
+  - aarch64
+  - amd64
+startup: services
+boot: auto
+host_network: true
+privileged:
+  - NET_ADMIN
+devices:
+  - "/dev/net/tun:/dev/net/tun"
+options:
+  rcp_host: ""
+  rcp_port: 6638
+  rcp_baudrate: 460800
+  log_level: info
+schema:
+  rcp_host: str
+  rcp_port: port
+  rcp_baudrate: int
+  log_level: list(debug|info|notice|warning|error)
