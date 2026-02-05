@@ -1,14 +1,14 @@
 name: "OTBR TCP (SLZB-06)"
-version: "2026.2.5.9"
+version: "2026.2.5.10"
 slug: "otbr_tcp_slzb06"
 description: "Robust OpenThread Border Router for TCP-connected adapters (SLZB-06/SMLIGHT)"
 url: "https://github.com/flarn/ha-otbr-slzb06-addon"
 arch:
   - aarch64
   - amd64
-startup: services
+startup: application
 boot: auto
-init: false
+init: true
 map:
   - config:rw
 options:
