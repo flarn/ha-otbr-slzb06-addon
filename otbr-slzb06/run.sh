@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bashio
+#!/usr/bin/env bashio
 
 # ==============================================================================
 # OTBR TCP Add-on Startup Script
@@ -42,7 +42,7 @@ EOF
 # OTBR Agent Service
 mkdir -p /etc/services.d/otbr-agent
 cat > /etc/services.d/otbr-agent/run <<EOF
-#!/usr/bin/with-contenv bashio
+#!/usr/bin/env bashio
 # Wait for socat to create the TTY
 while [ ! -e "${VIRTUAL_TTY}" ]; do sleep 1; done
 exec otbr-agent -I wpan0 -B "${BACKBONE_IF}" -d "${LOG_INT}" "${RADIO_URL}"
