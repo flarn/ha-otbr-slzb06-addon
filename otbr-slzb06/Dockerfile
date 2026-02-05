@@ -1,16 +1,22 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+# We use the specific image you want as the base
+FROM bnutzer/otbr-tcp:latest
 
-# Install dependencies if they aren't in your base image
-# (socat is usually needed for TCP-to-Serial bridging in OTBR)
-RUN apt-get update && apt-get install -y socat && apt-get clean
+# Home Assistant Add-ons require bashio and s6-overlay to function
+# Since bnutzer/otbr-tcp is a standard Debian/Ubuntu image, 
+# we must ensure the environment matches what your run.sh expects.
 
-# Copy the script to the S6 initialization folder
+# 1. Install bashio (Required for your run.sh to work)
+RUN apt-get update && apt-get install -y curl jq \
+    && curl -J -L -o /tmp/bashio.tar.gz "https://github.com/hassio-addons/bashio/archive/v0.16.2.tar.gz" \
+    && mkdir /tmp/bashio \
+    && tar zxvf /tmp/bashio.tar.gz --strip 1 -C /tmp/bashio \
+    && mv /tmp/bashio/lib /usr/lib/bashio \
+    && ln -s /usr/lib/bashio/bashio /usr/bin/bashio \
+    && rm -rf /tmp/bashio.tar.gz /tmp/bashio
+
+# 2. Copy your fixed configuration script
 COPY run.sh /etc/cont-init.d/01-otbr-config
 RUN chmod a+x /etc/cont-init.d/01-otbr-config
-
-# Ensure the persistent data directory exists
-RUN mkdir -p /data/thread
 
 # Labels for Home Assistant
 LABEL \
