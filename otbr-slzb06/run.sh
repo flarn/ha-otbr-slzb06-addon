@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bashio
+#!/usr/bin/env bashio
 
 # ==============================================================================
 # OTBR TCP Add-on Startup Script
@@ -35,14 +35,14 @@ bashio::log.info "Registering supervised services..."
 # Socat Service
 mkdir -p /etc/services.d/socat
 cat > /etc/services.d/socat/run <<EOF
-#!/usr/bin/with-contenv bashio
+#!/usr/bin/env bashio
 exec socat -d -d pty,link=${VIRTUAL_TTY},raw,echo=0,waitslave tcp:${RCP_HOST}:${RCP_PORT},keepalive,keepidle=10,keepintvl=10,keepcnt=5
 EOF
 
 # OTBR Agent Service
 mkdir -p /etc/services.d/otbr-agent
 cat > /etc/services.d/otbr-agent/run <<EOF
-#!/usr/bin/with-contenv bashio
+#!/usr/bin/env bashio
 # Wait for socat to create the TTY
 while [ ! -e "${VIRTUAL_TTY}" ]; do sleep 1; done
 exec otbr-agent -I wpan0 -B "${BACKBONE_IF}" -d "${LOG_INT}" "${RADIO_URL}"
