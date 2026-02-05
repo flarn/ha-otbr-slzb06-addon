@@ -25,4 +25,3 @@ schema:
   log_level: list(debug|info|notice|warning|error)
 ports:
   8080/tcp: 8080
-image: "openthread/otbr"
