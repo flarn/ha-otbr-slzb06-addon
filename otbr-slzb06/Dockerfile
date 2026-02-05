@@ -1,7 +1,7 @@
 ARG BUILD_FROM=bnutzer/otbr-tcp:latest
 FROM ${BUILD_FROM}
 
-# Hardcoded configurations from bnutzer/otbr-tcp docs
+# Hardcoded configurations for the SLZB-06 adapter
 ENV RCP_HOST="192.168.2.22"
 ENV RCP_PORT="6638"
 ENV RCP_BAUDRATE="460800"

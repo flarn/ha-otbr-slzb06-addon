@@ -1,1 +1,1 @@
-# ha-otbr-slzb06-addon
+# ha-otbr-slzb06-app
