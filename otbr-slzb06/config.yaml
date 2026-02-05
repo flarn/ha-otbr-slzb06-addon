@@ -1,5 +1,5 @@
 name: "OTBR TCP"
-version: "1.0.2"
+version: "1.0.3"
 slug: "otbr_tcp"
 description: "OpenThread Border Router for network-attached (TCP) serial bridges"
 url: "https://github.com/bnutzer/docker-otbr-tcp"
