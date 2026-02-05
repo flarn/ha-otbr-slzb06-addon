@@ -1,3 +1,3 @@
 build_from:
-  aarch64: "bnutzer/otbr-tcp:latest"
-  amd64: "bnutzer/otbr-tcp:latest"
+  aarch64: "openthread/otbr:latest"
+  amd64: "openthread/otbr:latest"

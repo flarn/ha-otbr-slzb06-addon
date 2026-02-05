@@ -1,5 +1,5 @@
 name: "OTBR TCP (SLZB-06)"
-version: "2026.2.5.15"
+version: "2026.2.5.18"
 slug: "otbr_tcp_slzb06"
 description: "Robust OpenThread Border Router for TCP-connected adapters (SLZB-06/SMLIGHT)"
 url: "https://github.com/flarn/ha-otbr-slzb06-app"
@@ -13,6 +13,8 @@ host_network: true
 full_access: true
 devices:
   - /dev/net/tun
+ingress: true
+ingress_port: 80
 map:
   - config:rw
 options:
@@ -27,5 +29,3 @@ schema:
   rcp_baudrate: int
   backbone_interface: str
   log_level: list(debug|info|notice|warning|error)
-ports:
-  8080/tcp: 8080
