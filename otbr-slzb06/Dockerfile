@@ -1,10 +1,11 @@
-ARG BUILD_FROM=openthread/otbr:latest
+ARG BUILD_FROM=bnutzer/otbr-tcp:latest
 FROM ${BUILD_FROM}
 
-# Install only what is strictly necessary
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    socat iproute2 \
-    && rm -rf /var/lib/apt/lists/*
+# Hardcoded configurations from bnutzer/otbr-tcp docs
+ENV RCP_HOST="SLZB-06M.local"
+ENV RCP_PORT="6638"
+ENV RCP_BAUDRATE="460800"
+ENV OTBR_WEB_ENABLE=1
 
 COPY run.sh /run.sh
 RUN chmod a+x /run.sh
