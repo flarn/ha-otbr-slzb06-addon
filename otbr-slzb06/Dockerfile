@@ -1,8 +1,10 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-# Copy the startup script
-COPY run.sh /
-RUN chmod a+x /run.sh
+# Copy the script to the S6 initialization folder
+# This makes it run automatically before services start
+COPY run.sh /etc/cont-init.d/01-otbr-config
+RUN chmod a+x /etc/cont-init.d/01-otbr-config
 
-CMD [ "/run.sh" ]
+# We do not define a CMD here, so the base image's 
+# internal S6 init system runs by default.
